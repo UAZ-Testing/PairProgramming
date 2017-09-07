@@ -9,7 +9,6 @@ def minutos_de_la_semana(semanas):
     20160
     """
     return semanas * 7 * 24 * 60
-    pass
 
 
 def obtener_residuo_sin_mod(numerador, divisor):
@@ -55,12 +54,7 @@ def producto_de_dos_conjuntos(xs, ys):
     >>> producto_de_dos_conjuntos({1,2,3},{3,4,5})
     {3, 4, 5, 6, 8, 9, 10, 12, 15}
     """
-    nums = set()
-    for num1 in xs:
-        for num2 in ys:
-            nums.add(num1 * num2)
-    return nums
-
+    return set(x * y for x in xs for y in ys)
 
 
 def producto_de_conjuntos_sin_duplicados(xs, ys):
@@ -71,19 +65,12 @@ def producto_de_conjuntos_sin_duplicados(xs, ys):
     return set(producto_de_dos_conjuntos(xs, ys))
 
 
-
 def interseccion(Ss, Ts):
     """
     >>> interseccion({1, 2, 3, 4},{3, 4, 5, 6})
     {3, 4}
     """
-    inter = set()
-    for num1 in Ss:
-        for num2 in Ts:
-            if num1 == num2:
-                inter.add(num1)
-                break
-    return inter
+    return Ss & Ts
 
 
 def promedio_de_lista(lista):
@@ -91,10 +78,7 @@ def promedio_de_lista(lista):
     >>> promedio_de_lista([20, 10, 15, 75])
     30
     """
-    suma = 0
-    for numero in lista:
-        suma += numero
-    return int(suma / len(lista))
+    return int(sum(lista) / len(lista))
 
 
 def producto_cartesiano(Xs, Ys):
@@ -102,9 +86,4 @@ def producto_cartesiano(Xs, Ys):
     >>> producto_cartesiano(['A','B','C'],[1,2,3])
     [['A', 1], ['A', 2], ['A', 3], ['B', 1], ['B', 2], ['B', 3], ['C', 1], ['C', 2], ['C', 3]]
     """
-    producto = []
-    for x in Xs:
-
-        for y in Ys:
-            producto.append([x, y])
-    return producto
+    return [[x, y] for x in Xs for y in Ys]
